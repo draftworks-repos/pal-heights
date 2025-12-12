@@ -1,0 +1,26 @@
+:root {
+  /* Main Headings / Sub-headings */
+  --font-heading: "Merriweather", serif;
+
+  /* Smaller Headings */
+  --font-small-heading: "Inter", sans-serif;
+
+  /* Paragraphs */
+  --font-paragraph: "Alegreya Sans", sans-serif;
+
+  /* All Caps / Labels */
+  --font-allcaps: "Habibi", serif;
+
+  /* Pal Brown – Primary Brand Color */
+  --pal-brown: #9b804e;
+
+  /* Light Background + Blobs */
+  --pal-light-bg: #fbf4de;
+
+  /* Soft Light Background (previously semi-light) */
+  --pal-soft-light: #f4df8c;
+
+  /* Text Colors */
+  --pal-black: #141414;
+  --pal-grey: #5d5d5d;
+}
