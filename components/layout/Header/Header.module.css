@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  z-index: 999;
+}
+
+.inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop / Mobile switch */
+.desktopNav {
+  display: block;
+}
+
+.mobileNav {
+  display: none;
+}
+
+/* Scaled devices Responsivness */
+@media (max-width: 1536px) {
+  .inner {
+    padding: 1.75rem 3rem;
+  }
+  .siteLogo {
+    width: 9rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileNav {
+    display: block;
+  }
+}
