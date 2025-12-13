@@ -22,9 +22,9 @@
 }
 
 .cursor-dot {
-  width: 5px;
-  height: 5px;
-  background: var(--pal-black);
+  width: 8px;
+  height: 8px;
+  background: var(--pal-soft-light);
   border-radius: 50%;
 }
 
@@ -32,9 +32,9 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 1px solid var(--pal-black);
+  border: 1px solid var(--pal-soft-light);
 }
 
 .cursor-hover .cursor-dot-outline {
-  border-color: var(--pal-black);
+  border-color: var(--pal-soft-light);
 }

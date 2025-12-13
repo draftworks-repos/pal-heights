@@ -6,7 +6,7 @@ type Nullable<T> = T | null;
 
 const DEFAULT_OUTLINE_SIZE = 35;
 const OUTLINE_GAP = 10;
-const INNER_DOT_SIZE = 3;
+const INNER_DOT_SIZE = 6;
 const FOLLOW_LERP = 0.14;
 const SIZE_LERP = 0.12;
 
