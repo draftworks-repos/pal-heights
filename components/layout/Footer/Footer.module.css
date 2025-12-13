@@ -1,0 +1,154 @@
+.footer {
+  background: var(--pal-black);
+  color: #ffffff;
+}
+
+.inner {
+  max-width: 1920px;
+  padding: 0rem 3rem 8rem;
+  margin: 0 auto;
+}
+
+.container {
+  padding-top: 5rem;
+  border-top: 1px solid #4f4f4fcc;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+}
+
+/* Small heading */
+.smallHeading {
+  font-family: var(--font-small-heading);
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 140%;
+  letter-spacing: 2%;
+  margin-bottom: 1.5rem;
+}
+
+/* Paragraph */
+.paragraph {
+  font-family: var(--font-pal-body);
+  font-size: 0.75rem;
+  line-height: 160%;
+  letter-spacing: 2%;
+  color: #bdbdbd;
+}
+
+/* Links */
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links li {
+  margin-bottom: 1rem;
+}
+
+.links a {
+  font-family: var(--font-pal-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+/* Left column */
+.colLeft {
+  max-width: 18rem;
+}
+
+/* Right column */
+.colRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.colRight a,
+.colRight span {
+  font-family: var(--font-pal-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+/* Bottom section */
+.bottom {
+  margin-top: 7rem;
+}
+
+.policyLinks {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.policyLinks a {
+  font-family: var(--font-small-heading);
+  font-size: 0.875rem;
+  line-height: 120%;
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+.copyright {
+  font-family: var(--font-pal-body);
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  color: #bdbdbd;
+  margin-bottom: 1.5rem;
+}
+
+.disclaimer {
+  font-family: var(--font-pal-body);
+  font-size: 0.75rem;
+  line-height: 160%;
+  color: #bdbdbd;
+}
+
+.policyLinks a,
+.container a:hover {
+  transition: color 0.3s ease-in-out;
+}
+.container a:hover {
+  color: var(--pal-soft-light);
+}
+
+.container a:not(:hover) {
+  transition-delay: 0.3s;
+}
+
+/* Scaled devices Responsivness */
+@media (max-width: 1536px) {
+  .smallHeading {
+    margin-bottom: 0.875rem;
+  }
+  .bottom {
+    margin-top: 6rem;
+  }
+  .inner {
+    padding-bottom: 5rem;
+  }
+  .links a,
+  .colRight a,
+  .colRight span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
