@@ -148,7 +148,39 @@
 }
 
 @media (max-width: 1024px) {
+  .inner {
+    padding: 0rem 0rem 8rem;
+  }
   .top {
-    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .colLeft {
+    width: 18rem;
+    margin-right: 4rem;
+  }
+  .container {
+    padding: 5rem 2rem 0rem;
+    border-top: 1px solid #4f4f4fcc;
+  }
+  .colRight a,
+  .colRight span {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 768px) {
+  .inner {
+    text-align: center;
+  }
+  .top {
+    grid-template-columns: 1fr;
+    gap: 0rem;
+  }
+  .colLeft {
+    max-width: 100%;
+    width: 100%;
+    margin: 0rem 0rem 2.5rem;
+  }
+  .policyLinks {
+    justify-content: space-between;
   }
 }
