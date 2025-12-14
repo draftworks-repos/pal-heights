@@ -1,3 +1,9 @@
-export default function MyComponent() {
-  return <div>Hello</div>;
+import Hero from "./Sections/Hero";
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
