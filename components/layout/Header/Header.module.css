@@ -44,8 +44,20 @@
   .desktopNav {
     display: none;
   }
-
   .mobileNav {
     display: block;
+  }
+  .inner {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding: 1.25rem 1.25rem;
+  }
+  .siteLogo {
+    width: 6.25rem;
+    height: 1.875rem;
   }
 }
