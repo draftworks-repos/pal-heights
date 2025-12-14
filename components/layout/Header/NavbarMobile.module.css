@@ -3,8 +3,8 @@
 --------------------------------- */
 .toggle {
   position: fixed;
-  top: 1.25rem;
-  right: 1.25rem;
+  top: 2rem;
+  right: 1.5rem;
 
   background: none;
   border: none;
@@ -101,4 +101,11 @@
 
   font-family: var(--font-small-heading);
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
 }
