@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Ripple } from "@components/ui/Ripple";
+import Home from "@components/home/Home";
+
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000/"),
   title: "Pal Heights | Premier Hotel & Hospitality Experience",
@@ -42,43 +43,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main
-      style={{
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "#000",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <section>
-        <button
-          data-cursor="hover"
-          style={{
-            padding: "10px 20px",
-            borderRadius: "6px",
-            border: "1px solid #000",
-            background: "#fff",
-            cursor: "pointer",
-          }}
-        >
-          Test Cursor
-        </button>
-      </section>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "600px",
-          overflow: "hidden",
-        }}
-      >
-        <Ripple />
-      </div>
+    <main>
+      <Home />
     </main>
   );
 }
