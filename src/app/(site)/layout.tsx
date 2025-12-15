@@ -5,6 +5,7 @@ import { Merriweather, Inter, Alegreya_Sans, Habibi } from "next/font/google";
 import Cursor from "@components/layout/Cursor/morphing-outline/CustomCursor";
 import Header from "@components/layout/Header/Header";
 import Footer from "@components/layout/Footer/Footer";
+import FooterCta from "@components/layout/Footer/FooterCta";
 
 const palHeading = Merriweather({
   weight: ["300", "400", "700"],
@@ -123,6 +124,7 @@ export default function RootLayout({
         <Cursor />
         <Header />
         {children}
+        <FooterCta />
         <Footer />
       </body>
     </html>
