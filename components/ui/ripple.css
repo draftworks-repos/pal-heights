@@ -13,9 +13,9 @@
   -webkit-mask-image: linear-gradient(to bottom, #fff, transparent); */
 
   /* Responsive ring sizes (desktop reference) */
-  --ripple-1: clamp(420px, 50vw, 840px);
-  --ripple-2: clamp(520px, 60vw, 1040px);
-  --ripple-3: clamp(620px, 72vw, 1240px);
+  --ripple-1: clamp(520px, 57vw, 920px);
+  --ripple-2: clamp(640px, 71vw, 1160px);
+  --ripple-3: clamp(760px, 85vw, 1400px);
 }
 
 /* -------------------------------------------------
