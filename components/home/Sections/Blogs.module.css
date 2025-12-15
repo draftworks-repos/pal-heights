@@ -46,7 +46,7 @@
 }
 
 .title {
-  font-family: var(--font-heading);
+  font-family: var(--font-small-heading);
   font-weight: 300;
   font-size: 4rem;
   line-height: 3.75rem;
@@ -55,7 +55,6 @@
 
 .title span {
   color: var(--pal-brown);
-  font-family: var(--font-small-heading);
   font-weight: 300;
 }
 
