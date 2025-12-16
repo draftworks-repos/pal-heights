@@ -21,8 +21,8 @@ export default function TwoProperties() {
         {/* Cards */}
         <div className={styles.grid}>
           <div
+            data-cursor-theme="light"
             className={`${styles.card} ${styles.cardOne}`}
-            data-cursor="hover"
           >
             <div className={styles.overlay}>
               <div className={styles.cardContent}>
@@ -32,8 +32,10 @@ export default function TwoProperties() {
                 </div>
 
                 <div className={styles.actions}>
-                  <a href="#">Explore More</a>
-                  <a href="#" className={styles.primary}>
+                  <a href="#" data-cursor="hover">
+                    Explore More
+                  </a>
+                  <a href="#" data-cursor="hover" className={styles.primary}>
                     Book Now
                   </a>
                 </div>
@@ -42,8 +44,8 @@ export default function TwoProperties() {
           </div>
 
           <div
+            data-cursor-theme="light"
             className={`${styles.card} ${styles.cardTwo}`}
-            data-cursor="hover"
           >
             <div className={styles.overlay}>
               <div className={styles.cardContent}>
@@ -53,8 +55,10 @@ export default function TwoProperties() {
                 </div>
 
                 <div className={styles.actions}>
-                  <a href="#">Explore More</a>
-                  <a href="#" className={styles.primary}>
+                  <a href="#" data-cursor="hover">
+                    Explore More
+                  </a>
+                  <a href="#" data-cursor="hover" className={styles.primary}>
                     Book Now
                   </a>
                 </div>
