@@ -48,7 +48,7 @@ export default function Blogs() {
         {/* Cards */}
         <div className={styles.grid}>
           {blogs.map((blog) => (
-            <article key={blog.id} data-cursor="hover" className={styles.card}>
+            <article key={blog.id} className={styles.card}>
               <div
                 className={styles.image}
                 style={{ backgroundImage: `url(${blog.image})` }}
@@ -59,7 +59,9 @@ export default function Blogs() {
                 <h3>{blog.title}</h3>
                 <p>{blog.excerpt}</p>
 
-                <a className={styles.readMore}>Read more</a>
+                <a className={styles.readMore} data-cursor="hover">
+                  Read more
+                </a>
               </div>
             </article>
           ))}
