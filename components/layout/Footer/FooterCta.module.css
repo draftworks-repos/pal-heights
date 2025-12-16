@@ -111,3 +111,79 @@
   cursor: pointer;
   white-space: nowrap;
 }
+
+/* Scaled devices Responsivness */
+@media (max-width: 1536px) {
+  .footer {
+    height: 27rem;
+  }
+  .content h2 {
+    font-size: 2.25rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+  }
+  .content p {
+    font-size: 0.775rem;
+  }
+  .inputWrap {
+    width: 22rem;
+    height: 1.8rem;
+  }
+  .inputWrap input {
+    padding: 0 1rem;
+    font-size: 0.75rem;
+  }
+  .inputWrap input::placeholder {
+    font-size: 0.7rem;
+  }
+  .inputWrap button {
+    padding: 0 1.5rem;
+    font-size: 0.7rem;
+    line-height: 1rem;
+  }
+}
+/* Tablet Responsivness */
+@media (max-width: 1024px) {
+  .footer {
+    height: 20rem;
+  }
+  .content h2 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .content p {
+    font-size: 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+  .inputWrap {
+    width: 18rem;
+    height: 1.5rem;
+  }
+  .inputWrap input {
+    padding: 0 0.9rem;
+    font-size: 0.7rem;
+  }
+  .inputWrap button {
+    padding: 0 0.9rem;
+  }
+  .inputWrap button {
+    padding: 0 1rem;
+  }
+}
+/* Mobile Responsivness */
+@media (max-width: 768px) {
+  .footer {
+    height: 20rem;
+  }
+  .content h2 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+  .content p {
+    font-size: 0.6rem;
+  }
+  .inputWrap {
+    width: 16rem;
+  }
+}
