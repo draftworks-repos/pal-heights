@@ -125,10 +125,9 @@
   object-fit: cover;
 }
 
-.hideSm {
+.hideLg {
   display: none;
 }
-
 /* Content */
 .textContent {
   padding: 1rem 0;
@@ -297,10 +296,16 @@
     flex-direction: column;
   }
   .hideLg {
+    display: block;
+  }
+  .hideSm {
     display: none;
   }
-  .navMobile {
+  .navMobile,
+  .hideLg {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
   }
   .cardContent {

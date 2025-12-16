@@ -78,7 +78,7 @@ export default function Reviews() {
         <div className={styles.slider}>
           {/* Left */}
           <button
-            className={`${styles.nav} ${styles.hideLg}`}
+            className={`${styles.nav} ${styles.hideSm}`}
             onClick={prev}
             data-cursor="hover"
             aria-label="Previous"
@@ -100,7 +100,7 @@ export default function Reviews() {
               >
                 <div className={styles.cardContent}>
                   <Image
-                    className={`${styles.image} ${styles.hideLg}`}
+                    className={`${styles.image} ${styles.hideSm}`}
                     src={reviews[index].image}
                     alt={reviews[index].title}
                     width={300}
@@ -111,13 +111,13 @@ export default function Reviews() {
                     <h3>{reviews[index].title}</h3>
                     <p>&quot;{reviews[index].text}&quot;</p>
 
-                    <div className={`${styles.author} ${styles.hideLg}`}>
+                    <div className={`${styles.author} ${styles.hideSm}`}>
                       <strong>{reviews[index].author}</strong>
                       <span>{reviews[index].role}</span>
                     </div>
                   </div>
 
-                  <div className={styles.hideSm}>
+                  <div className={styles.hideLg}>
                     <Image
                       className={styles.image}
                       src={reviews[index].image}
@@ -148,7 +148,7 @@ export default function Reviews() {
 
           {/* Right */}
           <button
-            className={`${styles.nav} ${styles.hideLg}`}
+            className={`${styles.nav} ${styles.hideSm}`}
             onClick={next}
             data-cursor="hover"
             aria-label="Next"
