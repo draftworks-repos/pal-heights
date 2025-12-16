@@ -30,8 +30,11 @@ export default function FooterCTA() {
               type="email"
               placeholder="email@email.com"
               aria-label="Email address"
+              data-cursor-theme="dark"
             />
-            <button type="submit">Subscribe</button>
+            <button type="submit" data-cursor-theme="dark">
+              Subscribe
+            </button>
           </div>
         </form>
       </div>
