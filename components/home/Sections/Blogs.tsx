@@ -29,7 +29,7 @@ const blogs = [
 
 export default function Blogs() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-cursor-theme="dark">
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
