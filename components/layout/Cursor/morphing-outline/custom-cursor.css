@@ -26,6 +26,7 @@
   height: 8px;
   background: var(--pal-soft-light);
   border-radius: 50%;
+  transition: background 0.5s ease-in-out;
 }
 
 .cursor-dot-outline {
@@ -33,8 +34,21 @@
   height: 35px;
   border-radius: 50%;
   border: 1px solid var(--pal-soft-light);
+  transition: border-color 0.5s ease-in-out;
 }
 
 .cursor-hover .cursor-dot-outline {
   border-color: var(--pal-soft-light);
+}
+
+.cursor-theme-dark .cursor-dot {
+  background: var(--pal-brown);
+}
+
+.cursor-theme-dark .cursor-dot-outline {
+  border-color: var(--pal-brown);
+  background: rgba(0, 0, 0, 0.04);
+}
+.cursor-theme-dark.cursor-hover .cursor-dot-outline {
+  border-color: var(--pal-brown);
 }

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import "./custom-cursor.css";
+
 type Nullable<T> = T | null;
 
 const DEFAULT_OUTLINE_SIZE = 35;
@@ -10,12 +11,8 @@ const INNER_DOT_SIZE = 6;
 const FOLLOW_LERP = 0.14;
 const SIZE_LERP = 0.12;
 
-function clamp(v: number, a = 0, b = 1) {
-  return Math.max(a, Math.min(b, v));
-}
-function lerp(a: number, b: number, t: number) {
-  return a + (b - a) * clamp(t);
-}
+const clamp = (v: number, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const lerp = (a: number, b: number, t: number) => a + (b - a) * clamp(t);
 
 export default function CustomCursor() {
   const innerRef = useRef<Nullable<HTMLDivElement>>(null);
@@ -37,9 +34,13 @@ export default function CustomCursor() {
   const targetBR = useRef(DEFAULT_OUTLINE_SIZE / 2);
 
   const hoveringRef = useRef<Element | null>(null);
-  const [visible, setVisible] = useState(false);
-  const rafRef = useRef<number | null>(null);
+  const lockToElement = useRef(false);
 
+  const [visible, setVisible] = useState(false);
+  const [theme, setTheme] = useState<"default" | "dark">("default");
+  const [clicking, setClicking] = useState(false);
+
+  const rafRef = useRef<number | null>(null);
   const hasMoved = useRef(false);
 
   function findHoverAncestor(el: Element | null): Element | null {
@@ -51,45 +52,46 @@ export default function CustomCursor() {
   }
 
   function parseBorderRadius(el: Element, w: number, h: number): number {
-    try {
-      const cs = window.getComputedStyle(el);
-      const br = cs.borderTopLeftRadius || cs.borderRadius || "0px";
-
-      if (br.includes("%")) {
-        const pct = parseFloat(br) || 0;
-        return (pct / 100) * Math.min(w, h);
-      }
-      return parseFloat(br) || 0;
-    } catch {
-      return Math.min(w, h) / 2;
-    }
+    const br = getComputedStyle(el).borderTopLeftRadius || "0px";
+    return br.includes("%")
+      ? (parseFloat(br) / 100) * Math.min(w, h)
+      : parseFloat(br);
   }
 
-  function setHoverTarget(el: Element | null) {
-    if (!el) return resetHoverTarget();
-
+  function setHoverTarget(el: Element) {
     const rect = (el as HTMLElement).getBoundingClientRect();
-    const gap = OUTLINE_GAP;
 
-    targetW.current = rect.width + gap * 2;
-    targetH.current = rect.height + gap * 2;
-    targetBR.current = parseBorderRadius(el, rect.width, rect.height) + gap / 2;
+    targetW.current = rect.width + OUTLINE_GAP * 2;
+    targetH.current = rect.height + OUTLINE_GAP * 2;
+    targetBR.current =
+      parseBorderRadius(el, rect.width, rect.height) + OUTLINE_GAP / 2;
+
     targetX.current = rect.left + rect.width / 2;
     targetY.current = rect.top + rect.height / 2;
 
     hoveringRef.current = el;
+    lockToElement.current = true;
   }
 
   function resetHoverTarget() {
+    hoveringRef.current = null;
+    lockToElement.current = false;
+
     targetW.current = DEFAULT_OUTLINE_SIZE;
     targetH.current = DEFAULT_OUTLINE_SIZE;
     targetBR.current = DEFAULT_OUTLINE_SIZE / 2;
+
     targetX.current = mouseX.current;
     targetY.current = mouseY.current;
-    hoveringRef.current = null;
   }
 
   function animate() {
+    if (hoveringRef.current) {
+      const rect = (hoveringRef.current as HTMLElement).getBoundingClientRect();
+      targetX.current = rect.left + rect.width / 2;
+      targetY.current = rect.top + rect.height / 2;
+    }
+
     outlineX.current = lerp(outlineX.current, targetX.current, FOLLOW_LERP);
     outlineY.current = lerp(outlineY.current, targetY.current, FOLLOW_LERP);
 
@@ -101,22 +103,25 @@ export default function CustomCursor() {
       outlineRef.current.style.width = `${outlineW.current}px`;
       outlineRef.current.style.height = `${outlineH.current}px`;
       outlineRef.current.style.borderRadius = `${outlineBR.current}px`;
-      outlineRef.current.style.transform = `translate3d(${
-        outlineX.current - outlineW.current / 2
-      }px, ${outlineY.current - outlineH.current / 2}px, 0)`;
+      outlineRef.current.style.transform = `translate3d(
+        ${outlineX.current - outlineW.current / 2}px,
+        ${outlineY.current - outlineH.current / 2}px,
+        0
+      )`;
     }
 
     if (innerRef.current) {
-      innerRef.current.style.transform = `translate3d(${
-        mouseX.current - INNER_DOT_SIZE / 2
-      }px, ${mouseY.current - INNER_DOT_SIZE / 2}px, 0)`;
+      innerRef.current.style.transform = `translate3d(
+        ${mouseX.current - INNER_DOT_SIZE / 2}px,
+        ${mouseY.current - INNER_DOT_SIZE / 2}px,
+        0
+      )`;
     }
 
     rafRef.current = requestAnimationFrame(animate);
   }
-
   useEffect(() => {
-    if (rafRef.current == null) rafRef.current = requestAnimationFrame(animate);
+    rafRef.current = requestAnimationFrame(animate);
 
     const onMove = (e: MouseEvent) => {
       mouseX.current = e.clientX;
@@ -127,39 +132,61 @@ export default function CustomCursor() {
         setVisible(true);
       }
 
-      if (!hoveringRef.current) {
-        targetX.current = mouseX.current;
-        targetY.current = mouseY.current;
-      }
-
       const el = document.elementFromPoint(e.clientX, e.clientY);
-      const hoverEl = findHoverAncestor(el);
 
+      const hoverEl = findHoverAncestor(el);
       if (hoverEl && hoverEl !== hoveringRef.current) {
         setHoverTarget(hoverEl);
       } else if (!hoverEl && hoveringRef.current) {
         resetHoverTarget();
       }
+
+      if (!hoveringRef.current) {
+        targetX.current = mouseX.current;
+        targetY.current = mouseY.current;
+      }
+
+      const themeEl = el?.closest?.(
+        "[data-cursor-theme]"
+      ) as HTMLElement | null;
+      setTheme(themeEl?.dataset.cursorTheme === "dark" ? "dark" : "default");
     };
 
+    // 🔑 KEY FIX: reset hover on scroll
+    const onScroll = () => {
+      if (hoveringRef.current) {
+        resetHoverTarget();
+      }
+    };
+
+    const onDown = () => setClicking(true);
+    const onUp = () => setClicking(false);
+
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <>
-      <div
-        className={`cursor-wrapper ${visible ? "cursor-visible" : ""} ${
-          hoveringRef.current ? "cursor-hover" : ""
-        }`}
-      >
-        <div className="cursor-dot" ref={innerRef} />
-        <div className="cursor-dot-outline" ref={outlineRef} />
-      </div>
-    </>
+    <div
+      className={`cursor-wrapper
+        ${visible ? "cursor-visible" : ""}
+        ${hoveringRef.current ? "cursor-hover" : ""}
+        cursor-theme-${theme}
+        ${clicking ? "cursor-click" : ""}
+      `}
+    >
+      <div className="cursor-dot" ref={innerRef} />
+      <div className="cursor-dot-outline" ref={outlineRef} />
+    </div>
   );
 }
