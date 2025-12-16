@@ -2,7 +2,7 @@ import styles from "./Properties.module.css";
 
 export default function TwoProperties() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-cursor-theme="dark">
       <div className={styles.container}>
         {/* Heading */}
         <div className={styles.header}>
