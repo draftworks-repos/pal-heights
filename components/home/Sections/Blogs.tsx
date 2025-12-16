@@ -50,6 +50,7 @@ export default function Blogs() {
           {blogs.map((blog) => (
             <article key={blog.id} className={styles.card}>
               <div
+                data-cursor-theme="light"
                 className={styles.image}
                 style={{ backgroundImage: `url(${blog.image})` }}
               />
