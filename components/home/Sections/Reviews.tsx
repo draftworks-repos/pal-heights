@@ -57,7 +57,7 @@ export default function Reviews() {
   };
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} data-cursor-theme="dark">
       <div className={styles.container}>
         {/* Header (UNCHANGED TEXT INTENT) */}
         <div className={styles.header}>
