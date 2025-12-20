@@ -1,7 +1,8 @@
 import Hero from "./Sections/Hero";
 import SectionOne from "./Sections/Properties";
-import SectionTwo from "./Sections/Blogs";
-import SectionThree from "./Sections/Reviews";
+import SectionTwo from "./Sections/Experiences";
+import SectionThree from "./Sections/Blogs";
+import SectionFour from "../sharedSections/Reviews";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <SectionOne />
       <SectionTwo />
       <SectionThree />
+      <SectionFour />
     </>
   );
 }
