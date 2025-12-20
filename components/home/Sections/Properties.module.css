@@ -16,7 +16,10 @@
   text-align: center;
   margin-bottom: 7rem;
 }
-
+.kickerWrapper {
+  display: block;
+  overflow: hidden;
+}
 .kicker {
   display: block;
   font-family: var(--font-allcaps);
@@ -45,12 +48,24 @@
   font-family: var(--font-heading);
   font-weight: 300;
   font-size: 4rem;
-  line-height: 3.75rem;
+  line-height: 4.75rem;
   color: var(--pal-black);
 }
 
-.title span {
+/* MASK (static, clips movement) */
+.lineMask {
   display: block;
+  overflow: hidden;
+}
+
+/* MOVING ELEMENT */
+.lineInner {
+  display: block;
+  will-change: transform;
+}
+
+/* Highlight line */
+.highlight {
   font-family: var(--font-small-heading);
   font-weight: 300;
   color: var(--pal-brown);
