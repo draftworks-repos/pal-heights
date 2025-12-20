@@ -1,3 +1,17 @@
-export default function MyComponent() {
-  return <div>Hello</div>;
+import Hero from "./Sections/Hero";
+// import SectionOne from "./Sections/Properties";
+// import SectionTwo from "./Sections/Experiences";
+// import SectionThree from "./Sections/Blogs";
+// import SectionFour from "../sharedSections/Reviews";
+
+export default function Contact() {
+  return (
+    <>
+      <Hero />
+      {/* <SectionOne /> */}
+      {/* <SectionTwo /> */}
+      {/* <SectionThree /> */}
+      {/* <SectionFour /> */}
+    </>
+  );
 }
