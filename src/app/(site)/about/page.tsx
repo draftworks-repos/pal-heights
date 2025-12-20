@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import About from "@components/about/About";
+// import About from "@components/about/About";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000/"),
@@ -44,9 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return (
-    <main>
-      <About />
-    </main>
-  );
+  return <main>{/* <About /> */}</main>;
 }

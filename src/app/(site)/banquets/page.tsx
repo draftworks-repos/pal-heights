@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Banquets from "@components/banquets/Banquets";
+// import Banquets from "@components/banquets/Banquets";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000/"),
@@ -44,9 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function BanquetsPage() {
-  return (
-    <main>
-      <Banquets />
-    </main>
-  );
+  return <main>{/* <Banquets /> */}</main>;
 }
