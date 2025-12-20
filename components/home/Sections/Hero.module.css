@@ -35,12 +35,23 @@
   margin-bottom: 1.5rem;
 }
 
+/* Mask wrapper */
+.mask {
+  overflow: hidden;
+}
+
 /* Paragraph */
 .paragraph {
   font-family: var(--font-small-heading);
   font-weight: 300;
   font-size: 1.75rem;
   color: #ffe8c3;
+  display: block;
+}
+.fadeUpOnce {
+  display: block;
+  overflow: hidden;
+  will-change: transform;
 }
 
 /* Scaled devices Responsivness */
