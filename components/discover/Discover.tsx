@@ -1,3 +1,21 @@
-export default function MyComponent() {
-  return <div>Hello</div>;
+import Hero from "./Sections/Hero";
+import SectionOne from "./Sections/DiscoverRooms";
+import SectionTwo from "./Sections/DiscoverRoomsDark";
+import SectionThree from "./Sections/DiscoverRooms";
+import SectionFour from "./Sections/DiningHighlight";
+import SectionFive from "./Sections/Wellness";
+import SectionSix from "./Sections/Banquets";
+
+export default function Discover() {
+  return (
+    <>
+      <Hero />
+      <SectionOne />
+      <SectionTwo />
+      <SectionThree />
+      <SectionFour />
+      <SectionFive />
+      <SectionSix />
+    </>
+  );
 }
