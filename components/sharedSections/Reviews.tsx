@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./Reviews.module.css";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const reviews = [
   {
     id: 1,
@@ -46,6 +51,94 @@ export default function Reviews() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
+  // GSAP refs
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const kickerRef = useRef<HTMLSpanElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const leftLineRef = useRef<HTMLSpanElement | null>(null);
+  const rightLineRef = useRef<HTMLSpanElement | null>(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const kicker = kickerRef.current;
+    const title = titleRef.current;
+    const leftLine = leftLineRef.current;
+    const rightLine = rightLineRef.current;
+    const slider = sliderRef.current;
+
+    if (!container || !kicker || !title || !leftLine || !rightLine || !slider)
+      return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // kicker → translate only
+      tl.from(kicker, {
+        y: 50,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+
+      // title spans → translate only
+      tl.from(
+        title.querySelectorAll("span"),
+        {
+          y: 70,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0,
+        },
+        "-=0.3"
+      );
+
+      // left line → fade + translate
+      tl.from(
+        leftLine,
+        {
+          x: 40,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "-=0.4"
+      );
+
+      // right line → fade + translate
+      tl.from(
+        rightLine,
+        {
+          x: -40,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "<"
+      );
+
+      // slider wrapper → fade + translate
+      tl.from(
+        slider,
+        {
+          y: 60,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "<"
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
   const next = () => {
     setDirection(1);
     setIndex((prev) => (prev + 1) % reviews.length);
@@ -58,24 +151,30 @@ export default function Reviews() {
 
   return (
     <section className={styles.section} data-cursor-theme="dark">
-      <div className={styles.container}>
-        {/* Header (UNCHANGED TEXT INTENT) */}
-        <div className={styles.header}>
-          <span className={styles.kicker}>
-            WHERE EVERY DETAIL CREATES A LASTING MEMORY
+      <div ref={containerRef} className={styles.container}>
+        {/* Header */}
+        <div ref={headerRef} className={styles.header}>
+          <span className={styles.kickerWrapper}>
+            <span ref={kickerRef} className={styles.kicker}>
+              WHERE EVERY DETAIL CREATES A LASTING MEMORY
+            </span>
           </span>
 
           <div className={styles.titleRow}>
-            <span className={styles.line} />
-            <h2 className={styles.title}>
-              Real Experiences <br className={styles.br} />{" "}
-              <span>Real Reviews</span>
+            <span ref={leftLineRef} className={styles.line} />
+
+            {/* Updated structure */}
+            <h2 ref={titleRef} className={styles.title}>
+              <span>Real Experiences</span> <br className={styles.br} />
+              <span className={styles.span}>Real Reviews</span>
             </h2>
-            <span className={styles.line} />
+
+            <span ref={rightLineRef} className={styles.line} />
           </div>
         </div>
 
-        <div className={styles.slider}>
+        {/* Slider */}
+        <div ref={sliderRef} className={styles.slider}>
           {/* Left */}
           <button
             className={`${styles.nav} ${styles.hideSm}`}
@@ -134,13 +233,13 @@ export default function Reviews() {
               </motion.article>
             </AnimatePresence>
           </div>
+
+          {/* Mobile Nav */}
           <div className={styles.navMobile}>
-            {/* Left */}
             <button className={styles.nav} onClick={prev} aria-label="Previous">
               <ChevronLeft className={styles.navIcon} size={26} />
             </button>
 
-            {/* Right */}
             <button className={styles.nav} onClick={next} aria-label="Next">
               <ChevronRight className={styles.navIcon} size={26} />
             </button>
