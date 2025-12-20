@@ -1,3 +1,15 @@
-export default function MyComponent() {
-  return <div>Hello</div>;
+import Hero from "./Sections/Hero";
+import SectionOne from "./Sections/Jaika";
+import SectionTwo from "./Sections/Breeze";
+import SectionThree from "./Sections/Desire";
+
+export default function Dining() {
+  return (
+    <>
+      <Hero />
+      <SectionOne />
+      <SectionTwo />
+      <SectionThree />
+    </>
+  );
 }
