@@ -22,11 +22,6 @@
   color: #ffffff;
   text-decoration: none;
   position: relative;
-  transition: opacity 0.2s ease;
-}
-
-.menu li a:hover {
-  opacity: 0.75;
 }
 
 /* Book Now button */
@@ -40,12 +35,35 @@
   color: #ffffff;
   text-decoration: none;
 
-  transition: background-color 0.25s ease, transform 0.2s ease;
+  transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out;
 }
 
-.bookNow:hover {
-  background-color: var(--pal-brown);
+.light {
+  background-color: #ffffff;
+  color: var(--pal-brown);
 }
+
+/* Scrolled */
+.scrolledButton {
+  color: var(--pal-brown);
+  background-color: #ffffff;
+}
+
+/* .a::before {
+  background: var(--pal-brown);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+}
+
+.a:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+} */
 
 /* Scaled devices Responsivness */
 @media (max-width: 1536px) {
