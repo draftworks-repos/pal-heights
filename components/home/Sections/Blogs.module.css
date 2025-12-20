@@ -21,6 +21,10 @@
   display: none;
 }
 
+.kickerWrapper {
+  overflow: hidden;
+}
+
 .kicker {
   display: block;
   font-family: var(--font-allcaps);
@@ -49,11 +53,18 @@
   font-family: var(--font-small-heading);
   font-weight: 300;
   font-size: 4rem;
-  line-height: 3.75rem;
+  line-height: 4.75rem;
   color: var(--pal-black);
+  overflow: hidden;
+  will-change: transform;
 }
 
 .title span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.title .span {
   color: var(--pal-brown);
   font-weight: 300;
 }
@@ -162,7 +173,7 @@
     width: 5rem;
   }
   .title,
-  .title span {
+  .title .span {
     font-size: 3rem;
     line-height: 3rem;
   }
@@ -220,7 +231,7 @@
     width: 4rem;
   }
   .title,
-  .title span {
+  .title .span {
     font-size: 2.25rem;
     line-height: 2.25rem;
   }
@@ -276,7 +287,7 @@
     width: 2rem;
   }
   .title,
-  .title span {
+  .title .span {
     font-size: 1.75rem;
     line-height: 2rem;
     white-space: nowrap;

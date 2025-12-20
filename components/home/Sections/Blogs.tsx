@@ -1,4 +1,11 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Blogs.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const blogs = [
   {
@@ -28,20 +35,124 @@ const blogs = [
 ];
 
 export default function Blogs() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const kickerRef = useRef<HTMLSpanElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const leftLineRef = useRef<HTMLSpanElement | null>(null);
+  const rightLineRef = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const header = headerRef.current;
+    const kicker = kickerRef.current;
+    const title = titleRef.current;
+    const leftLine = leftLineRef.current;
+    const rightLine = rightLineRef.current;
+
+    if (!container || !header || !kicker || !title || !leftLine || !rightLine)
+      return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // kicker (translate ONLY, no fade)
+      tl.from(kicker, {
+        y: 50,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+
+      // title spans — translate ONLY
+      tl.from(
+        title.querySelectorAll("span"),
+        {
+          y: 70,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0,
+        },
+        "-=0.3"
+      );
+
+      // lines — fade + translate
+      tl.from(
+        leftLine,
+        {
+          x: 40,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "-=0.4"
+      );
+
+      tl.from(
+        rightLine,
+        {
+          x: -40,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "<"
+      );
+
+      // cards — fade + translate + stagger
+      tl.from(
+        `.${styles.card}`,
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.55,
+          ease: "power3.out",
+          stagger: 0.15,
+        },
+        "<"
+      );
+
+      // CTA — fade + translate
+      tl.from(
+        `.${styles.ctaWrap}`,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.45,
+          ease: "power3.out",
+        },
+        "<"
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className={styles.section} data-cursor-theme="dark">
-      <div className={styles.container}>
+      <div ref={containerRef} className={styles.container}>
         {/* Header */}
-        <div className={styles.header}>
-          <span className={styles.kicker}>THE COMFORT CORNER</span>
+        <div ref={headerRef} className={styles.header}>
+          <div className={styles.kickerWrapper}>
+            <span ref={kickerRef} className={styles.kicker}>
+              THE COMFORT CORNER
+            </span>
+          </div>
 
           <div className={styles.titleRow}>
-            <span className={styles.line} />
-            <h2 className={styles.title}>
-              Blogs for <br className={styles.br} />{" "}
-              <span>Curious Travelers</span>
+            <span ref={leftLineRef} className={styles.line} />
+
+            <h2 ref={titleRef} className={styles.title}>
+              <span>Blogs for</span> <br className={styles.br} />
+              <span className={styles.span}>Curious Travelers</span>
             </h2>
-            <span className={styles.line} />
+
+            <span ref={rightLineRef} className={styles.line} />
           </div>
         </div>
 
@@ -68,9 +179,8 @@ export default function Blogs() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <div className={styles.ctaWrap}>
-          <a data-cursor="hover" className={styles.cta}>
+          <a className={styles.cta} data-cursor="hover">
             Explore News & Media
           </a>
         </div>
