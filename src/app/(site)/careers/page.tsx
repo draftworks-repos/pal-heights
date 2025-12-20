@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Careers from "@components/careers/Careers";
+// import Careers from "@components/careers/Careers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000/"),
@@ -44,9 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function CareersPage() {
-  return (
-    <main>
-      <Careers />
-    </main>
-  );
+  return <main>{/* <Careers /> */}</main>;
 }
